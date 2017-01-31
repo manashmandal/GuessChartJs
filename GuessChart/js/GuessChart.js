@@ -18,7 +18,14 @@ var line = d3.line()
     .y(function(d) { return y(d.close); });
 
 
+var click_line = d3.line()
+    .x(function(d) { return d[0]; })
+    .y(function(d) { return d[1]; });
+
 var path;
+
+var append_circle_coordinate = [0, 0];
+
 
 d3.tsv("data.tsv", function(d) {
     d.date = parseTime(d.date);
@@ -46,23 +53,40 @@ d3.tsv("data.tsv", function(d) {
         .attr("text-anchor", "end")
         .text("Price ($)");
 
+    console.log(data);
+
+});
+
+
+var click_coords = [];
+
+
+
+svg.on('click', function() {
+    click_coords.push(d3.mouse(this));
+    console.log(click_coords);
+});
+
+function clearMouseCoordinates() {
+    click_coords = [];
+}
+
+
+
+function drawIt() {
+    console.log(click_coords);
     g.append("path")
         .attr("id", "line-path")
-        .datum(data)
+        .datum(click_coords)
         .attr("fill", "none")
         .attr("stroke", "red")
         .attr("stroke-linejoin", "round")
         .attr("stroke-linecap", "round")
         .attr("stroke-width", 5)
-        .on("mouseover", function() {
-            var coordinates = [0, 0];
-            coordinates = d3.mouse(this);
-            console.log(coordinates);
-            svg.append('circle')
-                .attr('cx', coordinates[0] - margin.left)
-                .attr('cy', coordinates[1] - margin.right)
-                .attr('r', '5px')
-                .attr('fill', 'black');
-        })
-        .attr("d", line);
-});
+        .attr("d", click_line);
+}
+
+function reload() {
+    d3.select("#line-path").remove();
+    clearMouseCoordinates();
+}

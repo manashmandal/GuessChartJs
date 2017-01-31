@@ -31,15 +31,34 @@
 
     <script src="https://d3js.org/d3.v4.min.js"></script>
 
-    <div class="container">
+    <div class="container" id="chart_container">
         <div id="chart">
             <svg width="960" height="500"></svg>
         </div>
     </div>
 
+    <div class="container">
+        <span class="input-group-btn">
+        <button type="button" class="btn btn-default" onclick="clearMouseCoordinates()">Clear Array</button>
+    </span>
+
+
+        <span class="input-group-btn">
+            <button type="button" class="btn btn-default" onclick="drawIt()">Draw It</button>
+        </span>
+
+
+        <span class="input-group-btn">
+            <button type="button" class="btn btn-default" onclick="reload()">Reload</button>
+        </span>
+
+
+    </div>
+
 
     <script src="./js/GuessChart.js">
     </script>
+
 
 </body>
 
