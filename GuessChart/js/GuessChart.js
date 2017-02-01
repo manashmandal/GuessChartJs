@@ -18,6 +18,8 @@ var line = d3.line()
     .y(function(d) { return y(d.close); });
 
 
+var bisectDate = d3.bisector(function(d) { return d.date; }).left;
+
 var click_line = d3.line()
     .x(function(d) { return d[0]; })
     .y(function(d) { return d[1]; });
@@ -26,6 +28,12 @@ var path;
 
 var append_circle_coordinate = [0, 0];
 
+
+function make_x_axis() {
+    return d3.svg.axis().scale(x)
+        .orient('bottom')
+        .ticks(5);
+}
 
 d3.tsv("data.tsv", function(d) {
     d.date = parseTime(d.date);
@@ -39,7 +47,7 @@ d3.tsv("data.tsv", function(d) {
 
     g.append("g")
         .attr("transform", "translate(0," + height + ")")
-        .call(d3.axisBottom(x))
+        .append(make_x_axis())
         .select(".domain")
         .remove();
 
@@ -89,4 +97,8 @@ function drawIt() {
 function reload() {
     d3.select("#line-path").remove();
     clearMouseCoordinates();
+}
+
+function mousemove() {
+
 }

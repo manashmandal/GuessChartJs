@@ -15,7 +15,42 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="./css/chart.css">
+    <link type="text/css" rel="stylesheet" href=".//css//chart.css">
+
+    <!--<style>
+        body {
+            font: 10px sans-serif;
+        }
+        
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: #000;
+            shape-rendering: crispEdges;
+        }
+        
+        .line {
+            fill: none;
+            stroke: steelblue;
+            stroke-width: 1.5px;
+        }
+        
+        .line.second {
+            stroke: red;
+        }
+        
+        .area {
+            fill: none;
+            opacity: 0.5;
+        }
+        
+        .dot {
+            fill: none;
+            stroke: steelblue;
+            stroke-width: 1.5px;
+        }
+    </style>
+-->
 
 
 </head>
@@ -31,16 +66,18 @@
 
     <script src="https://d3js.org/d3.v4.min.js"></script>
 
+
     <div class="container" id="chart_container">
-        <div id="chart">
+        <!--        <div id="chart">
             <svg width="960" height="500"></svg>
-        </div>
+        </div>-->
     </div>
 
     <div class="container">
         <span class="input-group-btn">
-        <button type="button" class="btn btn-default" onclick="clearMouseCoordinates()">Clear Array</button>
+        <button type="button" class="btn btn-default" onclick="clearMouseCoordinates()">Clear Coordinates</button>
     </span>
+
 
 
         <span class="input-group-btn">
@@ -48,15 +85,15 @@
         </span>
 
 
-        <span class="input-group-btn">
+        <!--     <span class="input-group-btn">
             <button type="button" class="btn btn-default" onclick="reload()">Reload</button>
-        </span>
+        </span>-->
 
 
     </div>
 
 
-    <script src="./js/GuessChart.js">
+    <script src="./js/LineChartWithGrid.js">
     </script>
 
 
