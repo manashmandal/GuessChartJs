@@ -48,6 +48,7 @@ d3.csv("data/data.csv", function(error, data) {
     // add the X gridlines
     svg.append("g")
         .attr("class", "grid")
+        .attr('id', 'xgrid')
         .attr("transform", "translate(0," + height + ")")
         .call(make_x_gridlines()
             .tickSize(-height)
@@ -55,6 +56,7 @@ d3.csv("data/data.csv", function(error, data) {
         )
         // add the Y gridlines
     svg.append("g")
+        .attr('id', 'ygrid')
         .attr("class", "grid")
         .call(make_y_gridlines()
             .tickSize(-width)
@@ -81,6 +83,25 @@ var bisector = d3.bisector(function(d) {
     return d.date;
 }).left;
 
+//Get transformed value
+function getTranslation(transform) {
+    // Create a dummy g for calculation purposes only. This will never
+    // be appended to the DOM and will be discarded once this function 
+    // returns.
+    var g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+
+    // Set the transform attribute to the provided string value.
+    g.setAttributeNS(null, "transform", transform);
+
+    // consolidate the SVGTransformList containing all transformations
+    // to a single SVGTransform of type SVG_TRANSFORM_MATRIX and get
+    // its SVGMatrix. 
+    var matrix = g.transform.baseVal.consolidate().matrix;
+
+    // As per definition values e and f are the ones for the translation.
+    return [matrix.e, matrix.f];
+}
+
 svg.on('click', function() {
     // click_coords.push(d3.mouse(this));
     // console.log(click_coords);
@@ -91,8 +112,25 @@ svg.on('click', function() {
     console.log("X:  " + x0);
     console.log("y: " + y0);
 
+
+    yTicks = d3.select("#xgrid");
+
+    yTicks.selectAll('.tick').each(function(data) {
+        var tick = d3.select(this);
+        // var transform = tick.attr('transform');
+        var transform = getTranslation(tick.attr('transform'));
+
+        console.log("tick: " + data + ",  " + transform);
+    });
+
+
 });
 
+d3.select('xgrid').selectAll('ticks').each(function(data) {
+    var transform = d3.transform(tick.attr('transform')).translate;
+
+    console.log('transform: ' + transform);
+});
 
 function clearMouseCoordinates() {
     click_coords = [];
