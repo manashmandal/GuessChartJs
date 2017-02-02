@@ -1,4 +1,4 @@
-.line {
+/*.line {
     fill: none;
     stroke: steelblue;
     stroke-width: 2px;
@@ -12,4 +12,23 @@
 
 .grid path {
     stroke-width: 0;
+}
+
+svg {
+    border: solid 1px #aaa;
+}*/
+
+
+/*CSS for barchart*/
+
+.bar {
+    fill: steelblue;
+}
+
+.bar:hover {
+    fill: brown;
+}
+
+.axis--x path {
+    display: none;
 }
