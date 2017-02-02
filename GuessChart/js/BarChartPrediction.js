@@ -10,6 +10,22 @@ var g = svg.append("g")
     .attr('class', 'bar_group')
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+
+function dragstarted(d) {
+    console.log("Drag started");
+    console.log(d3.mouse(this));
+}
+
+function dragged(d) {
+    console.log("Dragging");
+}
+
+function dragend(d) {
+    console.log("Dragging done");
+}
+
+
+
 d3.csv("data.csv", function(d) {
     console.log(d);
     d.percentage = +d.percentage;
@@ -65,13 +81,20 @@ d3.csv("data.csv", function(d) {
         })
         .attr('cx', function(d) { return x.bandwidth() / 2 + x(d.gender); })
         .attr('cy', function(d) { return height - y(d.percentage); })
-        .on('click', function(d, i) {
-            console.log("Circle was clicked")
-        })
-        .attr('r', 10);
+        // .on('click', function(d, i) {
+        //     console.log("Circle was clicked")
+        // })
+        .attr('r', 10)
+        .call(d3.drag()
+            .on('start', dragstarted)
+            .on('drag', dragged)
+            .on('end', dragend)
+        )
+
 
 
 });
+
 
 
 
