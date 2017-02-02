@@ -56,7 +56,15 @@ d3.csv("data.csv", function(d) {
         .selectAll('rect')
         .data(data)
         .enter()
-        .append('rect');
+        .append('rect')
+        .attr('class', function(d) {
+            return "dragrect " + d.gender;
+        })
+        .attr('x', function(d) { return x(d.gender); })
+        .attr('y', function(d) { return height - y(d.percentage); })
+        .attr('width', 100)
+        .attr('height', 100);
+
 
 });
 
