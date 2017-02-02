@@ -10,14 +10,24 @@ var g = svg.append("g")
     .attr('class', 'bar_group')
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+//Initial cursor pos 
+var initial_pos = 0;
 
 function dragstarted(d) {
+    initial_pos = d3.event.y;
     console.log("Drag started");
     console.log(d3.mouse(this));
 }
 
 function dragged(d) {
     console.log("Dragging");
+
+    if (d3.event.y >= 0 && d3.event.y <= height) {
+        cursor_pos = d3.event.y;
+    }
+
+    d3.select(this)
+        .attr('cy', cursor_pos);
 }
 
 function dragend(d) {
