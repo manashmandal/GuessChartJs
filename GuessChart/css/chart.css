@@ -32,3 +32,11 @@ svg {
 .axis--x path {
     display: none;
 }
+
+.dragrect {
+    fill: lightsteelblue;
+}
+
+.dragrect:hover {
+    fill: mediumseagreen;
+}

@@ -45,6 +45,9 @@ d3.csv("data.csv", function(d) {
         .attr("x", function(d) { return x(d.gender); })
         .attr("y", function(d) { return y(d.percentage); })
         .attr("width", x.bandwidth())
+        .on('click', function(d, i) {
+            console.log("rectangle was clicked")
+        })
         .attr("height", function(d) { return height - y(d.percentage); });
 
 
@@ -62,12 +65,18 @@ d3.csv("data.csv", function(d) {
         })
         .attr('cx', function(d) { return x.bandwidth() / 2 + x(d.gender); })
         .attr('cy', function(d) { return height - y(d.percentage); })
+        .on('click', function(d, i) {
+            console.log("Circle was clicked")
+        })
         .attr('r', 10);
 
 
 });
 
 
-d3.select('g').on('click', function() {
-    console.log(d3.mouse(this));
-});
+
+
+
+// d3.select('g').on('click', function() {
+//     console.log(d3.mouse(this));
+// });
