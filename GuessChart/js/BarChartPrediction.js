@@ -3,7 +3,7 @@ var svg = d3.select(".chart"),
     width = +svg.attr("width") - margin.left - margin.right,
     height = +svg.attr("height") - margin.top - margin.bottom;
 
-var x = d3.scaleBand().rangeRound([0, width]).padding(0.1),
+var x = d3.scaleBand().rangeRound([0, width]).padding(0.5),
     y = d3.scaleLinear().rangeRound([height, 0]);
 
 var g = svg.append("g")
@@ -17,7 +17,7 @@ d3.csv("data.csv", function(d) {
     if (error) throw error;
 
     x.domain(data.map(function(d) { return d.gender; }));
-    y.domain([0, d3.max(data, function(d) { return d.percentage; })]);
+    y.domain([0, 1]);
 
     g.append("g")
         .attr("class", "axis axis--x")
