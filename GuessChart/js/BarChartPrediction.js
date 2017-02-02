@@ -53,17 +53,16 @@ d3.csv("data.csv", function(d) {
 
     //Dragging rectangles
     g.select('.dragrect')
-        .selectAll('rect')
+        .selectAll('circle')
         .data(data)
         .enter()
-        .append('rect')
+        .append('circle')
         .attr('class', function(d) {
             return "dragrect " + d.gender;
         })
-        .attr('x', function(d) { return x(d.gender); })
-        .attr('y', function(d) { return height - y(d.percentage); })
-        .attr('width', 100)
-        .attr('height', 100);
+        .attr('cx', function(d) { return x.bandwidth() / 2 + x(d.gender); })
+        .attr('cy', function(d) { return height - y(d.percentage); })
+        .attr('r', 10);
 
 
 });
