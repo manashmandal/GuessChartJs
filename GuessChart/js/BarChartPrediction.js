@@ -7,6 +7,7 @@ var x = d3.scaleBand().rangeRound([0, width]).padding(0.5),
     y = d3.scaleLinear().rangeRound([height, 0]);
 
 var g = svg.append("g")
+    .attr('class', 'bar_group')
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 d3.csv("data.csv", function(d) {
@@ -34,12 +35,32 @@ d3.csv("data.csv", function(d) {
         .attr("text-anchor", "end")
         .text("Frequency");
 
+
     g.selectAll(".bar")
         .data(data)
         .enter().append("rect")
-        .attr("class", "bar")
+        .attr("class", function(d) {
+            return "bar " + d.gender;
+        })
         .attr("x", function(d) { return x(d.gender); })
         .attr("y", function(d) { return y(d.percentage); })
         .attr("width", x.bandwidth())
         .attr("height", function(d) { return height - y(d.percentage); });
+
+
+    g.append('g')
+        .attr('class', 'dragrect');
+
+    //Dragging rectangles
+    g.select('.dragrect')
+        .selectAll('rect')
+        .data(data)
+        .enter()
+        .append('rect');
+
+});
+
+
+d3.select('g').on('click', function() {
+    console.log(d3.mouse(this));
 });
