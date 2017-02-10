@@ -46,6 +46,11 @@ function dragged(d) {
         d3.select('.female')
             .attr('y', cursor_height)
             .attr('height', height - cursor_height);
+
+        //Fixing the drag circle of female
+        d3.select('.dragrect .female')
+            .attr('cy', cursor_height);
+
     } else if (d3.select(this).attr('class') == 'dragrect female') {
         d3.select('.female')
             .attr('y', height - cursor_height)
@@ -54,6 +59,10 @@ function dragged(d) {
         d3.select('.male')
             .attr('y', cursor_height)
             .attr('height', height - cursor_height);
+
+        //Fixing the drag circle of male
+        d3.select('.dragrect .male')
+            .attr('cy', cursor_height);
     }
 
     // if (cursor_height > 50 && cursor_height < 60) {
