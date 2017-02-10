@@ -46,6 +46,14 @@ function dragged(d) {
         d3.select('.female')
             .attr('y', cursor_height)
             .attr('height', height - cursor_height);
+    } else if (d3.select(this).attr('class') == 'dragrect female') {
+        d3.select('.female')
+            .attr('y', height - cursor_height)
+            .attr('height', cursor_height);
+
+        d3.select('.male')
+            .attr('y', cursor_height)
+            .attr('height', height - cursor_height);
     }
 
     // if (cursor_height > 50 && cursor_height < 60) {
