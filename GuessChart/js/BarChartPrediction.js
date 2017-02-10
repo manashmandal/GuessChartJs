@@ -6,6 +6,9 @@ var svg = d3.select(".chart"),
 var x = d3.scaleBand().rangeRound([0, width]).padding(0.5),
     y = d3.scaleLinear().rangeRound([height, 0]);
 
+//Converts height to percentage
+var height2percentage = d3.scaleLinear().domain([0, height]).rangeRound([0, 100]);
+
 var g = svg.append("g")
     .attr('class', 'bar_group')
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -69,7 +72,7 @@ function dragged(d) {
             .style('display', 'inline');
 
         toolTip.select('text')
-            .text(y(cursor_height));
+            .text(height2percentage(cursor_height));
 
 
     } else if (d3.select(this).attr('class') == 'dragrect female') {
