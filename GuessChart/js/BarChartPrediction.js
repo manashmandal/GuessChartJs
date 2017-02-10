@@ -67,12 +67,14 @@ function dragged(d) {
         d3.select('.dragrect .female')
             .attr('cy', cursor_height);
 
-        toolTip.attr('y', height - cursor_height)
-            .attr('x', d3.event.x)
-            .style('display', 'inline');
+        toolTip
+            .style('display', 'inline')
+            .attr('transform', 'translate(' + 150 + ',' + (height - cursor_height) + ')');
 
         toolTip.select('text')
             .text(height2percentage(cursor_height));
+
+
 
 
     } else if (d3.select(this).attr('class') == 'dragrect female') {
