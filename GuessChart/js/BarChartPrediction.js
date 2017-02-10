@@ -38,9 +38,15 @@ function dragged(d) {
 
     console.log(d3.select(this).attr('class'));
 
-    d3.select('.male')
-        .attr('y', height - cursor_height)
-        .attr('height', cursor_height);
+    if (d3.select(this).attr('class') == 'dragrect male') {
+        d3.select('.male')
+            .attr('y', height - cursor_height)
+            .attr('height', cursor_height);
+
+        d3.select('.female')
+            .attr('y', cursor_height)
+            .attr('height', height - cursor_height);
+    }
 
     // if (cursor_height > 50 && cursor_height < 60) {
     //     d3.select('.male')
