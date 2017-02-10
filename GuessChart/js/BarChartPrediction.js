@@ -22,7 +22,7 @@ var toolTip = svg.append('g')
 toolTip.append('rect')
     .attr('width', 30)
     .attr('height', 20)
-    .attr('fill', 'white')
+    .attr('fill', 'steelblue')
     .style('opacity', 0.5);
 
 toolTip.append('text')
