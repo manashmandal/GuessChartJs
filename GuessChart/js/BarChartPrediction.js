@@ -69,7 +69,7 @@ function dragged(d) {
 
         toolTip
             .style('display', 'inline')
-            .attr('transform', 'translate(' + 150 + ',' + (height - cursor_height) + ')');
+            .attr('transform', 'translate(' + (x.bandwidth() + x(d.gender)) + ',' + (height - cursor_height - 10) + ')');
 
         toolTip.select('text')
             .text(height2percentage(cursor_height));
