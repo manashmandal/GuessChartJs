@@ -17,6 +17,9 @@ function dragstarted(d) {
     initial_pos = d3.event.y;
     console.log("Drag started");
     console.log(d3.mouse(this));
+
+    // d3.select('.male')
+    //     .attr('translate', 'rotate(180, 480, 250)');
 }
 
 function dragged(d) {
@@ -28,9 +31,30 @@ function dragged(d) {
 
     d3.select(this)
         .attr('cy', cursor_pos);
+
+    var cursor_height = height - cursor_pos;
+
+    console.log(height - cursor_pos);
+
+    console.log(d3.select(this).attr('class'));
+
+    d3.select('.male')
+        .attr('y', height - cursor_height)
+        .attr('height', cursor_height);
+
+    // if (cursor_height > 50 && cursor_height < 60) {
+    //     d3.select('.male')
+    //         .attr('y', height - cursor_height)
+    //         .attr('height', cursor_height);
+    // }
+
+    // d3.select('.male').attr('height', height - cursor_pos)
+    //     .attr('translate', 'rotate(90, 480, 250)');
+
 }
 
 function dragend(d) {
+    console.log("Dragging DONE");
     console.log("Dragging done");
 }
 
@@ -99,7 +123,7 @@ d3.csv("data.csv", function(d) {
             .on('start', dragstarted)
             .on('drag', dragged)
             .on('end', dragend)
-        )
+        );
 
 
 
