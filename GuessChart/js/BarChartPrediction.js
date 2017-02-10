@@ -10,6 +10,26 @@ var g = svg.append("g")
     .attr('class', 'bar_group')
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+
+//Adding a toolTip
+var toolTip = svg.append('g')
+    .attr('class', 'toolTip')
+    .style('display', 'none');
+
+toolTip.append('rect')
+    .attr('width', 30)
+    .attr('height', 20)
+    .attr('fill', 'white')
+    .style('opacity', 0.5);
+
+toolTip.append('text')
+    .attr('x', 15)
+    .attr('dy', '1.2em')
+    .attr('text-anchor', 'middle')
+    .attr('font-size', '12px')
+    .attr('font-weight', 'bold');
+
+
 //Initial cursor pos 
 var initial_pos = 0;
 
@@ -43,6 +63,14 @@ function dragged(d) {
         //Fixing the drag circle of female
         d3.select('.dragrect .female')
             .attr('cy', cursor_height);
+
+        toolTip.attr('y', height - cursor_height)
+            .attr('x', d3.event.x)
+            .style('display', 'inline');
+
+        toolTip.select('text')
+            .text(y(cursor_height));
+
 
     } else if (d3.select(this).attr('class') == 'dragrect female') {
         d3.select('.female')
@@ -109,6 +137,9 @@ d3.csv("data.csv", function(d) {
 
     g.append('g')
         .attr('class', 'dragrect');
+
+
+
 
     //Dragging rectangles
     g.select('.dragrect')
